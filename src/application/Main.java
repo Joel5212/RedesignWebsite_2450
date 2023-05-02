@@ -1,11 +1,15 @@
 package application;
 	
+import java.io.FileInputStream;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -19,10 +23,17 @@ public class Main extends Application {
 			Label sections = new Label("Sections");
 			Label login = new Label("LOGIN");
 			
-			HBox hbox = new HBox(sections, title, login);
+			Image image = new Image(new FileInputStream("C:\\Users\\joelj\\eclipse-workspace\\RedesignWebsite_2450\\resources\\hamburger_icon2.png"));
+			ImageView imageView = new ImageView(image);
+			imageView.setFitHeight(50); 
+		    imageView.setFitWidth(50);
+			
+			HBox hbox = new HBox(sections, imageView, title, login);
 			hbox.setAlignment(Pos.CENTER);
-			hbox.setMargin(sections, new Insets(0, 240, 0, 0));
+			hbox.setMargin(imageView, new Insets(0, 200, 0, 0));
 			hbox.setMargin(title, new Insets(0, 240, 0, 0));
+			
+			
 			
 			
 			 
