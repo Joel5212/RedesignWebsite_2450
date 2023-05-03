@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 
 public class Main extends Application {
@@ -27,14 +28,11 @@ public class Main extends Application {
 		try {
 			
 			Scene scene = MainPage.mainPageScene(primaryStage);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 	public static void main(String[] args) {
