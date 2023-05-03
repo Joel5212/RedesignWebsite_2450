@@ -10,13 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class NewsSections{
-	
-	
+
 	public static Scene newsSectionsScene(Stage primaryStage) throws FileNotFoundException
 	{
 		Image image = new Image(new FileInputStream("C:\\Users\\joelj\\eclipse-workspace\\RedesignWebsite_2450\\resources\\exit.png"));
@@ -43,7 +43,7 @@ public class NewsSections{
 	    Label lblNHL = new Label("NHL");
 	    Label lblMLB = new Label("MLB");
 	    
-	    Label lblHackers = new Label("Weather");
+	    Label lblWeather = new Label("Weather");
 	    Label lblClimateCrisis = new Label("Climate Crisis");
 	    Label lblTornadoes= new Label("Tornadoes");
 	    Label lblHurricanes = new Label("Hurricanes");
@@ -100,10 +100,9 @@ public class NewsSections{
 	    gp.add(lblCongress, 2, 5);
 	    gp.add(lblWhiteHouse, 2, 6);
 	    
-	    
-	    
-	    
 	    gp.add(lblSports, 3, 1);
+	    lblSports.setFont(new Font(15));
+	    lblSports.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
 	    
 	    gp.add(lblNBA, 3, 2);
 	    gp.setMargin(lblNBA, new Insets(0, 0, 0, 5));
@@ -117,11 +116,28 @@ public class NewsSections{
 	    gp.add(lblMLB, 3, 5);
 	    gp.setMargin(lblMLB, new Insets(0, 0, 0, 5));
 	    
+	    gp.add(lblWeather, 1, 6);
+	    lblWeather.setFont(new Font(15));
+	    lblWeather.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+	    gp.setMargin(lblWeather, new Insets(0, 0, 0, 50));
+	    
+	    gp.add(lblClimateCrisis, 1, 7);
+	    gp.setMargin(lblClimateCrisis, new Insets(0, 0, 0, 50));
+	    
+	    gp.add(lblHurricanes, 1, 8);
+	    gp.setMargin(lblHurricanes, new Insets(0, 0, 0, 50));
+	    
+	    gp.add(lblTornadoes, 1, 9);
+	    gp.setMargin(lblTornadoes, new Insets(0, 0, 0, 50));
+	    
+	    gp.setStyle("-fx-background-color: #000039;");
 	    
 	    gp.setHgap(50);
 	    
-	    Scene scene = new Scene(gp,650,650);
-	    return scene;
+	    Scene scene  = new Scene(gp,650,650);
+		return scene;
+	    
+	    
 		
 	}
 }
