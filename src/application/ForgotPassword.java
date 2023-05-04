@@ -20,41 +20,27 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Login{
-	public static Scene loginScene(Stage primaryStage)
+public class ForgotPassword{
+	public static Scene forgotPasswordScene(Stage primaryStage)
 	{
 
-		ArrayList<String> usernames = new ArrayList<String>();
-		usernames.add("hello22");
-		usernames.add("hello33");
 		
-		ArrayList<String> passwords = new ArrayList<String>();
-		passwords.add("12345678");
-		passwords.add("8321");
 		
-		Label title = new Label("Welcome to Hacker News");
+		Label title = new Label("Forgot Password");
 		
      
         title.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
 		title.setFont(new Font(20));
 		
-		Label usernameLbl = new Label("Username:");
+		Label usernameLbl = new Label("Email:");
 	    usernameLbl.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
 	    usernameLbl.setFont(new Font(13));
 
 	    TextField usernameTxtField = new TextField();
 	    
 	    HBox hbox1 = new HBox(usernameLbl, usernameTxtField);
-	    
-	    Label pw = new Label("Password:");
-	    pw.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-	    pw.setFont(new Font(13));
-	    
-		PasswordField pwBox = new PasswordField();
-		
-		HBox hbox2 = new HBox(pw, pwBox);
         
-		Button btnSignIn = new Button("Sign In");
+		Button btnSignIn = new Button("Send");
       
         Button btnBack = new Button("Back");
         
@@ -77,13 +63,7 @@ public class Login{
     
         
         btnBack.setOnAction(e -> {
-        	Scene scene = null;
-			try {
-				scene = MainPage.mainPageScene(primaryStage);
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+        	Scene scene = Login.loginScene(primaryStage);
         	primaryStage.setScene(scene);
         });
         
@@ -92,28 +72,16 @@ public class Login{
 			primaryStage.setScene(scene);
         });
         
-        forgotPassword.setOnMouseClicked(e -> {
-        	Scene scene = ForgotPassword.forgotPasswordScene(primaryStage);
-			primaryStage.setScene(scene);
-        });
-        
         btnSignIn.setOnAction(e -> {
-        	String password = pwBox.getText();
         	String username = usernameTxtField.getText();
-        	System.out.println(password);
-        	boolean condition = ((usernames.contains("hello22") || usernames.contains("hello33")) && (password.contains("123") || passwords.contains("hello22")));
         	
-        	if(username.isEmpty() || password.isEmpty())
+        	if(username.isEmpty())
         	{
         		errorMessage.setText("Empty Fields");
         	}
-        	else if(password.length() < 8)
+        	else if(!username.contains("@") || !username.contains(username))
         	{
-        		errorMessage.setText("Password has to be at least 8 character please try again");
-        	}
-        	else if(!condition)
-        	{
-        		errorMessage.setText("Incorrect Login/Username");
+        		errorMessage.setText("Unvalid Email");
         	}
         	else
         	{
@@ -125,23 +93,20 @@ public class Login{
 					e1.printStackTrace();
 				}
         		primaryStage.setScene(scene);
-        		showLoggedInAlert();
+        		showEmailSentAlert();
         	}
 		
         });
 
-        VBox vbox= new VBox(title, hbox1, hbox2, errorMessage, hbox3, forgotPassword, createAccount);
+        VBox vbox= new VBox(title, hbox1, errorMessage, hbox3);
         vbox.setStyle("-fx-background-color: #000039;");
                 
         vbox.setAlignment(Pos.CENTER);
         
         vbox.setMargin(title, new Insets(0, 0, 130, 0));
         vbox.setMargin(hbox1, new Insets(0, 0, 0, 220));
-        vbox.setMargin(hbox2, new Insets(30, 0, 0, 220));
         vbox.setMargin(hbox3, new Insets(70, 0, 0, 260));
-        vbox.setMargin(forgotPassword, new Insets(70, 0, 0, 0));
-        vbox.setMargin(errorMessage, new Insets(70, 0, 0, 0));
-        vbox.setMargin(createAccount, new Insets(20, 0, 0, 0));
+        vbox.setMargin(errorMessage, new Insets(50, 0, 0, 0));
         
         Scene scene = new Scene(vbox, 650, 650);
         
@@ -151,11 +116,10 @@ public class Login{
         return scene;
 	}
 	
-	private static void showLoggedInAlert() {
+	private static void showEmailSentAlert() {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText("Successful!");
-		alert.setContentText("Successfully Logged In!");
+		alert.setHeaderText("Email Sent!");
+		alert.setContentText("Password Reset instructions have been sent to your email");
 		alert.showAndWait();
 	}
-	
 }
