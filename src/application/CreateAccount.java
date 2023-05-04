@@ -3,10 +3,12 @@ import java.io.FileNotFoundException;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -103,30 +105,31 @@ public class CreateAccount{
 //        grid.add(hbBtn, 1, 8);
 
         final Text actiontarget = new Text();
-        grid.add(actiontarget, 1, 9);
+        grid.add(actiontarget, 0, 10);
+        grid.setMargin(actiontarget, new Insets(100, 0, 0, 0));
 
         btnSignIn.setOnAction(e -> {
             if (firstNameTextField.getText().isEmpty() || lastNameTextField.getText().isEmpty() || ageTextField.getText().isEmpty() 
                     || emailTextField.getText().isEmpty() || phoneTextField.getText().isEmpty() || pwBox.getText().isEmpty() || pwBox2.getText().isEmpty()) {
                 actiontarget.setFill(Color.FIREBRICK);
                 actiontarget.setText("Please fill in all fields.");
-            } else if (!pwBox.getText().equals(pwBox2.getText())) {
+            }
+            else if(!pwBox.getText().equals(pwBox2.getText())) {
                 actiontarget.setFill(Color.FIREBRICK);
                 actiontarget.setText("Passwords do not match.");
-            } else {
-                actiontarget.setFill(Color.GREEN);
-                actiontarget.setText("Sign in successful.");
+            }
+            else if(pwBox.getText().length() < 8){
+            	actiontarget.setText("Password has to be at least 8 characters");
+            }
+            else {
+            	Scene scene = Login.loginScene(primaryStage);
+            	primaryStage.setScene(scene);
+                showCreatedAccountAlert();
             }
         });
         
         btnBack.setOnAction(e -> {
-        	Scene scene = null;
-			try {
-				scene = MainPage.mainPageScene(primaryStage);
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+        	Scene scene = Login.loginScene(primaryStage);
         	primaryStage.setScene(scene);
         });
 
@@ -134,8 +137,14 @@ public class CreateAccount{
         grid.setMargin(btnSignIn, new Insets(0, 0, 0, 30));
         
         Scene scene = new Scene(grid, 650, 650);
-//        scene.getStylesheets().add(Login.class.getResource("style.css").toExternalForm());
 
         return scene;
+	}
+	
+	private static void showCreatedAccountAlert() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Successful!");
+		alert.setContentText("Successfully Created An Account!");
+		alert.showAndWait();
 	}
 }
