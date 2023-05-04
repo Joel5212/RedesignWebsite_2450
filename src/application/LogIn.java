@@ -9,115 +9,59 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class LogIn{
-	public static Scene logInScene(Stage primaryStage)throws FileNotFoundException
+public class Login{
+	public static Scene loginScene(Stage primaryStage)
 	{
 
-        GridPane grid = new GridPane();
-        grid.setStyle("-fx-background-color: #000039;");
-        
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-        
-        Label title = new Label("Welcome to Hacker News");
-        grid.setMargin(title, new Insets(0, 0, 0, 15));
-        
-		title.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
+		Label title = new Label("Welcome to Hacker News");
+     
+        title.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
 		title.setFont(new Font(20));
-		grid.add(title, 0, 0, 2, 1);
+		
+		Label username = new Label("Username:");
+	    username.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
+	    username.setFont(new Font(13));
 
-        Label firstName = new Label("First Name:");
-        firstName.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-		firstName.setFont(new Font(13));
-		grid.add(firstName, 0, 1);
-
-        TextField firstNameTextField = new TextField();
-        grid.add(firstNameTextField, 1, 1);
-
-        Label lastName = new Label("Last Name:");
-        lastName.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-		lastName.setFont(new Font(13));
-        grid.add(lastName, 0, 2);
-
-        TextField lastNameTextField = new TextField();
-        grid.add(lastNameTextField, 1, 2);
-
-        Label age = new Label("Age:");
-        age.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-		age.setFont(new Font(13));
-        grid.add(age, 0, 3);
-
-        TextField ageTextField = new TextField();
-        grid.add(ageTextField, 1, 3);
-
-        Label email = new Label("Email Address:");
-        email.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-		email.setFont(new Font(10));
-        grid.add(email, 0, 4);
-
-        TextField emailTextField = new TextField();
-        grid.add(emailTextField, 1, 4);
-
-        Label phone = new Label("Phone Number:");
-        phone.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-		phone.setFont(new Font(13));
-        grid.add(phone, 0, 5);
-
-        TextField phoneTextField = new TextField();
-        grid.add(phoneTextField, 1, 5);
-
-        Label pw = new Label("Password:");
-        pw.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-		pw.setFont(new Font(13));
-        grid.add(pw, 0, 6);
-
-        PasswordField pwBox = new PasswordField();
-        grid.add(pwBox, 1, 6);
-
-        Label pw2 = new Label("Confirm Password:");
-        pw2.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
-		pw2.setFont(new Font(13));
-        grid.add(pw2, 0, 7);
-
-        PasswordField pwBox2 = new PasswordField();
-        grid.add(pwBox2, 1, 7);
-
-        Button btnSignIn = new Button("Sign in");
-        grid.add(btnSignIn, 1, 9);
+	    TextField usernameTxtField = new TextField();
+	    
+	    HBox hbox1 = new HBox(username, usernameTxtField);
+	    
+	    Label pw = new Label("Password:");
+	    pw.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill:white;");
+	    pw.setFont(new Font(13));
+	    
+		PasswordField pwBox = new PasswordField();
+		
+		HBox hbox2 = new HBox(pw, pwBox);
         
+		Button btnSignIn = new Button("Sign In");
+      
         Button btnBack = new Button("Back");
-        grid.add(btnBack, 0, 9);
         
-//        HBox hbBtn = new HBox(10);
-//        hbBtn.setSpacing(75);
-//        hbBtn.setAlignment(Pos.BOTTOM_LEFT);
-//        hbBtn.getChildren().addAll(btnBack, btnSignIn);
-//        grid.add(hbBtn, 1, 8);
-
-        final Text actiontarget = new Text();
-        grid.add(actiontarget, 1, 9);
-
-        btnSignIn.setOnAction(e -> {
-            if (firstNameTextField.getText().isEmpty() || lastNameTextField.getText().isEmpty() || ageTextField.getText().isEmpty() 
-                    || emailTextField.getText().isEmpty() || phoneTextField.getText().isEmpty() || pwBox.getText().isEmpty() || pwBox2.getText().isEmpty()) {
-                actiontarget.setFill(Color.FIREBRICK);
-                actiontarget.setText("Please fill in all fields.");
-            } else if (!pwBox.getText().equals(pwBox2.getText())) {
-                actiontarget.setFill(Color.FIREBRICK);
-                actiontarget.setText("Passwords do not match.");
-            } else {
-                actiontarget.setFill(Color.GREEN);
-                actiontarget.setText("Sign in successful.");
-            }
-        });
+        Text errorMessage = new Text();
+        errorMessage.setStyle("-fx-background-color: #000039;");
+        errorMessage.setFont(new Font(13));
+        
+        Label forgotPassword = new Label("Forgot Password");
+        forgotPassword.setStyle("-fx-text-fill:blue;");
+        forgotPassword.setFont(new Font(15));
+        
+        Label createAccount = new Label("Create Account");
+        createAccount.setStyle("-fx-text-fill:blue;");
+        createAccount.setFont(new Font(15));
+    
+        
+        HBox hbox3 = new HBox(10);
+        hbox3.setSpacing(50);
+        hbox3.getChildren().addAll(btnBack, btnSignIn);
+    
         
         btnBack.setOnAction(e -> {
         	Scene scene = null;
@@ -129,11 +73,49 @@ public class LogIn{
 			}
         	primaryStage.setScene(scene);
         });
-
-        grid.setMargin(btnBack, new Insets(0, 0, 0, 30));
-        grid.setMargin(btnSignIn, new Insets(0, 0, 0, 30));
         
-        Scene scene = new Scene(grid, 650, 650);
+        createAccount.setOnMouseClicked(e -> {
+        	Scene scene = CreateAccount.signInScene(primaryStage);
+			primaryStage.setScene(scene);
+        });
+        
+        btnSignIn.setOnAction(e -> {
+        	String password = pwBox.getText();
+        	System.out.println(password);
+        	if(password.length() < 8)
+        	{
+        		errorMessage.setText("Password has to be less than 8 character please try again");
+        	}
+        	else
+        	{
+        		Scene scene = null;
+				try {
+					scene = MainPage.mainPageScene(primaryStage);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        		primaryStage.setScene(scene);
+        	}
+		
+        });
+
+        VBox vbox= new VBox(title, hbox1, hbox2, errorMessage, hbox3, forgotPassword, createAccount);
+        vbox.setStyle("-fx-background-color: #000039;");
+                
+        vbox.setAlignment(Pos.CENTER);
+        
+        vbox.setMargin(title, new Insets(0, 0, 130, 0));
+        vbox.setMargin(hbox1, new Insets(0, 0, 0, 220));
+        vbox.setMargin(hbox2, new Insets(30, 0, 0, 220));
+        vbox.setMargin(hbox3, new Insets(70, 0, 0, 260));
+        vbox.setMargin(forgotPassword, new Insets(70, 0, 0, 0));
+        vbox.setMargin(errorMessage, new Insets(70, 0, 0, 0));
+        vbox.setMargin(createAccount, new Insets(20, 0, 0, 0));
+        
+        Scene scene = new Scene(vbox, 650, 650);
+        
+        
 //        scene.getStylesheets().add(Login.class.getResource("style.css").toExternalForm());
 
         return scene;
