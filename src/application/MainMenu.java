@@ -197,7 +197,7 @@ public class MainMenu extends Application
 		
 		sections.setOnMouseClicked(e ->
 		{
-			getHostServices().showDocument("https://imgflip.com/memegenerator/19562727/Overconfident-Alcoholic-Depression-Guy");
+			
 		});
 		
 		login.setOnMouseEntered(e -> 
@@ -214,7 +214,24 @@ public class MainMenu extends Application
 		
 		login.setOnMouseClicked(e ->
 		{
-			getHostServices().showDocument("https://imgflip.com/memegenerator/19562727/Overconfident-Alcoholic-Depression-Guy");
+			
+		});
+		
+		comments.setOnMouseEntered(e -> 
+		{
+			frontPage.setCursor(Cursor.HAND);
+			comments.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill: red;");
+		});
+		
+		comments.setOnMouseExited(e -> 
+		{
+			frontPage.setCursor(Cursor.DEFAULT);
+			comments.setStyle("-fx-font-weight: bold; -fx-font-family: monospace; -fx-text-fill: white;");;
+		});
+		
+		comments.setOnMouseClicked(e ->
+		{
+			
 		});
 		
 		news1.setOnMouseEntered(e -> 
