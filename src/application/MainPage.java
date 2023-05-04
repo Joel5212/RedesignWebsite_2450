@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import application.NewsSections;
-import application.LogIn;
+import application.CreateAccount;
 
 public class MainPage{
 	
@@ -49,21 +49,15 @@ public class MainPage{
 	    imageViewLI.setFitWidth(25);
 	    
 	    imageViewLI.setOnMouseClicked(e -> {
-	    	Scene scene = null;
-			try {
-				scene = LogIn.logInScene(primaryStage);
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+	    	Scene scene = Login.loginScene(primaryStage);
+			primaryStage.setScene(scene);
+	    });
+	    
+	    imageViewLI.setOnMouseClicked(e -> {
+	    	Scene scene = Login.loginScene(primaryStage);
 	    	primaryStage.setScene(scene);
 	    });
 	    
-//	    imageViewLI.setOnMouseClicked(e -> {
-//	    	Scene scene = LogIn.logInScene(primaryStage);
-//	    	primaryStage.setScene(scene);
-//	    });
-//	    
 	    
 	    imageViewHI.setOnMouseClicked(e ->{
 	    	Scene scene = null;
